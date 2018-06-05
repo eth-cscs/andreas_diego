@@ -18,7 +18,7 @@ then
         done
 
         #check for source file and compile timer
-        if [ -e timer.c ]
+        if [ -e $MY_SCRATCH/timer.c ]
         then
                 echo "compiling timer"
                 cc timer.c -o timer
@@ -28,7 +28,7 @@ then
         fi
 
         #run timer
-        srun -C gpu -N 2 -n 2 timer
+        srun -C gpu -N 2 -n 2 $MY_SCRATCH/timer
 
         #finish transcription, make directory for data
         nid=$( sacct --name timer -o nodelist | awk 'END{print}')
